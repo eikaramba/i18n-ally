@@ -48,8 +48,15 @@ export class NodeHelper {
   static getPathWithoutNamespace(keypath: string, node?: Node, namespace?: string) {
     if (Global.namespaceEnabled) {
       namespace = node?.meta?.namespace || namespace
-      if (namespace)
-        return keypath.slice(namespace.length + 1)
+      if (namespace){
+        if(keypath.indexOf(namespace) >-1){
+          return keypath.slice(namespace.length + 1)
+        }else{
+          return keypath
+        }
+
+        
+      }
     }
 
     return keypath
